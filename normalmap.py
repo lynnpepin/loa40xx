@@ -4,19 +4,34 @@
 
 import numpy as np
 
-### OLD CODE
-# base_angles are the only ones we are interested in
-# on one quarter of the unit circle
-base_angles = np.array([0, np.pi/12, np.pi/8, np.pi/6])
+# Constants
+PI = np.pi  # convenience
+# All angles for every 15 degrees (pi/12) and every 22.5 degrees (pi/8).
+# Union1D makes sure we don't duplicate any angles
+key_angles = np.union1d(
+    np.arange(0, 2*PI, PI/12),
+    np.arange(0, 2*PI, PI/8)
+)
 
-# now let's repeat by 4 to get all 360
-key_angles = np.array([
-  base_angles + ii*np.pi/4
-  for ii in range(8)
-]).flatten()
 
-# from theta and phi angles, we get our normal angle
-def get_normal(theta, phi):
+base_angles = np.array(
+  [0, np.pi/12, np.pi/8, np.pi/6]
+)
+
+
+def normal_from_angles(theta, phi):
+    '''Get a unit vector in R3 described by theta and phi,
+    where theta is in the xy plane, (range -pi to pi)
+    and phi is the angle from surface to z (range 0 to pi/2)
+
+    :param theta:
+    :type theta:
+    :param phi:
+    :type phi:
+
+    :returns:
+    :rtype:
+    '''
   #theta in xy plane,
   #-pi to pi
   #phi from 0 to pi/2
@@ -25,6 +40,8 @@ def get_normal(theta, phi):
   xx = rr*np.cos(theta)
   yy = rr*np.sin(theta)
   return np.array([xx, yy, zz])
+
+# todo from here
 
 # now we convert a normal vector to rgb
 def normal2rgb(nn):
