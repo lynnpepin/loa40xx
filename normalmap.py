@@ -25,7 +25,7 @@ def normal_from_angles(theta, phi):
       |  /
       | /
       |/_____X
-    
+    palette_array
     :param theta: Angle along the XY plane, in radians
     :type theta: float
     :param phi: Angle along the Z axis, in radians
@@ -100,7 +100,7 @@ def generate_normal_palette(thetas=KEY_ANGLES, phis=KEY_ANGLES[:9]):
     :return: Numpy array of int of shape(w,h,3) of the color palette
     :type: numpy.array
     '''
-    colors = np.zeros(shape=(len(phis), len(thetas), 3), dtype=np.int)
+    colors = np.zeros(shape=(len(phis), len(thetas), 3), dtype=np.uint8)
     
     for ii in range(len(phis)):
         for jj in range(len(thetas)):
