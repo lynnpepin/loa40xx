@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://StarterProject.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -66,6 +66,11 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 } ]
 1/z_index = 0
 
+[sub_resource type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+
 [node name="StarterProject" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -94,6 +99,7 @@ script = ExtResource( 4 )
 [node name="Light2D" type="Light2D" parent="Player"]
 texture = ExtResource( 6 )
 texture_scale = 0.5
+shadow_enabled = true
 
 [node name="Light2D3" type="Light2D" parent="Player"]
 position = Vector2( 4, 4 )
@@ -126,6 +132,9 @@ position = Vector2( 112, 176 )
 [node name="StaticBody2D2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 112, 208 )
 
+[node name="StaticBody2D" parent="StaticBody2D2" instance=ExtResource( 7 )]
+position = Vector2( 96, -64 )
+
 [node name="StaticBody2D3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 144, 208 )
 
@@ -140,3 +149,10 @@ position = Vector2( 144, 272 )
 
 [node name="StaticBody2D7" parent="." instance=ExtResource( 7 )]
 position = Vector2( 144, 272 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource( 7 )
+z_index = -4
+color = Color( 0.333333, 0.333333, 0.333333, 1 )
+texture_scale = Vector2( 32, 32 )
+polygon = PoolVector2Array( -16, -16, 1072, -16, 1072, 1040, -16, 1040 )
