@@ -27,6 +27,7 @@ enabled=PoolStringArray(  )
 [global]
 
 frame=false
+fps=true
 
 [input]
 
